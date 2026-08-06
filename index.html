@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>倪润玮 · UI前端作品集</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ========== Canvas 鼠标跟随光晕 ========== -->
+  <canvas id="cursorGlow"></canvas>
+
+  <!-- ========== Header 导航 ========== -->
+  <header class="header glass">
+    <div class="header-inner">
+      <a class="logo" href="#home" data-link="home">
+        <span class="logo-text">NRW</span>
+        <span class="logo-dot"></span>
+      </a>
+      <nav class="nav">
+        <a href="#home" class="nav-link active" data-page="home">首页</a>
+        <a href="#about" class="nav-link" data-page="about">关于我</a>
+        <a href="#gallery" class="nav-link" data-page="gallery">作品画廊</a>
+        <a href="#experience" class="nav-link" data-page="experience">经历</a>
+        <a href="#projects" class="nav-link" data-page="projects">项目</a>
+        <a href="#contact" class="nav-link" data-page="contact">联系</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="theme-icon-sun">☀</span>
+        <span class="theme-icon-moon">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== 页面切换容器 ========== -->
+  <main class="page-container" id="pageContainer">
+
+    <!-- ==================== 🏠 首页 ==================== -->
+    <section class="page page-home active" id="home">
+      <!-- Hero 区域 -->
+      <div class="hero">
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-glow hero-glow-3"></div>
+        <div class="hero-content scroll-reveal">
+          <p class="hero-greeting">你好，我是</p>
+          <h1 class="hero-title">
+            <span class="gradient-text">倪润玮</span>
+          </h1>
+          <h2 class="hero-subtitle">UI Designer · Frontend Developer · AI Artist</h2>
+          <p class="hero-desc">
+            计算机视觉硕士 · 素描九级 · 二次元板绘爱好者<br/>
+            擅长从设计到落地的全链路交付，让每一个像素都有意义
+          </p>
+          <div class="hero-cta">
+            <a href="#gallery" class="btn btn-primary" data-link="gallery">
+              <span>查看作品</span>
+              <span class="btn-arrow">→</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost" data-link="contact">
+              <span>联系我</span>
+            </a>
+          </div>
+          <div class="hero-tags">
+            <span class="tag tag-violet">Figma</span>
+            <span class="tag tag-violet">UI Design</span>
+            <span class="tag tag-cyan">Frontend</span>
+            <span class="tag tag-pink">AIGC</span>
+            <span class="tag tag-cyan">Photoshop</span>
+
+          </div>
+        </div>
+        <div class="hero-scroll-hint scroll-reveal">
+          <span>向下滚动</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+
+      <!-- 能力卡片 -->
+      <div class="section-capabilities">
+        <div class="section-title scroll-reveal">
+          <h2>我能做什么</h2>
+          <p>Design × Code × AI — 三栖能力闭环</p>
+        </div>
+        <div class="capabilities-grid">
+          <div class="cap-card scroll-reveal" style="--delay: 0.1s">
+            <div class="cap-icon">🎨</div>
+            <h3>UI / UX 设计</h3>
+            <p>从用户研究到高保真视觉稿，建立完整的设计系统，输出可落地的设计规范。</p>
+            <div class="cap-tags">
+              <span class="tag tag-violet">Figma</span>
+              <span class="tag tag-cyan">Design System</span>
+              <span class="tag tag-pink">Prototyping</span>
+            </div>
+          </div>
+          <div class="cap-card scroll-reveal" style="--delay: 0.2s">
+            <div class="cap-icon">⚡</div>
+            <h3>前端开发</h3>
+            <p>像素级还原设计稿，精通现代前端框架，关注性能、可访问性与动效体验。</p>
+            <div class="cap-tags">
+              <span class="tag tag-violet">React</span>
+              <span class="tag tag-cyan">HTML</span>
+              <span class="tag tag-pink">CSS Animation</span>
+            </div>
+          </div>
+          <div class="cap-card scroll-reveal" style="--delay: 0.3s">
+            <div class="cap-icon">🤖</div>
+            <h3>AI × 艺术</h3>
+            <p>计算机视觉专业背景，将 AIGC 与传统手绘结合，探索人机协作的创作新范式。</p>
+            <div class="cap-tags">
+              <span class="tag tag-violet">Stable Diffusion</span>
+              <span class="tag tag-cyan">ComfyUI</span>
+              <span class="tag tag-pink">手绘板绘</span>
+            </div>
+          </div>
+          <div class="cap-card scroll-reveal" style="--delay: 0.4s">
+            <div class="cap-icon">📐</div>
+            <h3>全链路交付</h3>
+            <p>从需求分析 → 交互设计 → 视觉设计 → 前端实现 → 部署上线，一条龙闭环。</p>
+            <div class="cap-tags">
+              <span class="tag tag-violet">Product Thinking</span>
+              <span class="tag tag-cyan">Full Stack</span>
+              <span class="tag tag-pink">Deployment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 👤 关于我 ==================== -->
+    <section class="page page-about" id="about">
+      <div class="page-inner">
+        <div class="section-title scroll-reveal">
+          <h2>关于我</h2>
+          <p>一个既会画原型也会写代码的跨界设计师</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- 自我介绍 -->
+          <div class="about-card about-intro scroll-reveal">
+            <div class="about-avatar">
+              <div class="avatar-placeholder">NRW</div>
+            </div>
+            <h3>倪润玮</h3>
+            <p class="about-role">UI Designer & Frontend Developer</p>
+            <p class="about-bio">
+              计算机视觉硕士在读，拥有 UI 设计实习经验与扎实的前端工程能力。
+              热爱二次元文化，擅长将 AIGC 辅助创作与传统手绘技法结合，
+              致力于打造既有美学深度又具备优秀交互体验的数字产品。
+            </p>
+            <div class="about-quick">
+              <div class="quick-item">
+                <span class="quick-label">学历</span>
+                <span class="quick-value">硕士 · 计算机视觉</span>
+              </div>
+              <div class="quick-item">
+                <span class="quick-label">素描</span>
+                <span class="quick-value">九级认证</span>
+              </div>
+              <div class="quick-item">
+                <span class="quick-label">定位</span>
+                <span class="quick-value">上海 · 远程均可</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 技能矩阵 -->
+          <div class="about-card about-skills scroll-reveal" style="--delay: 0.15s">
+            <h3>技能矩阵</h3>
+            <div class="skill-group">
+              <h4>设计工具</h4>
+              <div class="skill-bars">
+                <div class="skill-bar">
+                  <span class="skill-name">Figma</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 92%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Photoshop</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 80%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Illustrator</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 75%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Capcut</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 90%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>前端技术</h4>
+              <div class="skill-bars">
+                <div class="skill-bar">
+                  <span class="skill-name">HTML</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 95%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">CSS</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 88%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">JavaScript</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 85%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>AI / CV</h4>
+              <div class="skill-bars">
+                <div class="skill-bar">
+                  <span class="skill-name">Stable Diffusion</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 82%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">ComfyUI</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 78%"></div></div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Python</span>
+                  <div class="skill-track"><div class="skill-fill" style="--w: 80%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 标签云 -->
+        <div class="tag-cloud scroll-reveal">
+          <span class="tag tag-violet">UI Design</span>
+          <span class="tag tag-cyan">Frontend</span>
+          <span class="tag tag-pink">AIGC</span>
+          <span class="tag tag-violet">Computer Vision</span>
+          <span class="tag tag-cyan">Design System</span>
+          <span class="tag tag-pink">手绘板绘</span>
+          <span class="tag tag-pink">CSS Animation</span>
+          <span class="tag tag-violet">Figma</span>
+          <span class="tag tag-pink">素描九级</span>
+          <span class="tag tag-violet">二次元</span>
+          <span class="tag tag-cyan">Responsive</span>
+          <span class="tag tag-violet">Python</span>
+          <span class="tag tag-cyan">Linux</span>
+          <span class="tag tag-pink">目标检测</span>
+          <span class="tag tag-violet">Raspberry Pi</span>
+          <span class="tag tag-cyan">OpenCV</span>
+          <span class="tag tag-pink">TensorFlow</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 🎨 作品画廊 ==================== -->
+    <section class="page page-gallery" id="gallery">
+      <div class="page-inner">
+        <div class="section-title scroll-reveal">
+          <h2>作品画廊</h2>
+          <p>吧唧柄图 · 手绘临摹 · 平面设计 — 点击查看大图</p>
+        </div>
+
+        <!-- 筛选按钮 -->
+        <div class="gallery-filters scroll-reveal">
+          <button class="filter-btn active" data-filter="all">全部</button>
+          <button class="filter-btn" data-filter="badge">吧唧柄图</button>
+          <button class="filter-btn" data-filter="sketch">手绘临摹</button>
+          <button class="filter-btn" data-filter="graphic">平面设计</button>
+        </div>
+
+        <!-- 作品网格 -->
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- 卡片由 JS 动态渲染 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 📚 经历 ==================== -->
+    <section class="page page-experience" id="experience">
+      <div class="page-inner">
+        <div class="section-title scroll-reveal">
+          <h2>教育 & 实习经历</h2>
+          <p>从课堂到职场，每一步都在靠近理想的设计工程师生涯</p>
+        </div>
+
+        <!-- 教育经历 -->
+        <div class="timeline-block scroll-reveal">
+          <h3 class="timeline-heading">🎓 教育经历</h3>
+          <div class="timeline">
+            <div class="timeline-item left scroll-reveal">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <span class="timeline-period">2024.09 — 2027.06（预计）</span>
+                <h4>硕士研究生 · 计算机视觉</h4>
+                <p class="timeline-school">利默里克大学 · 计算机科学与技术学院</p>
+                <p>研究方向：计算机视觉、深度学习与智能感知系统。<br>课程涵盖图像处理、目标检测、机器学习及人工智能应用等内容，参与基于 PyTorch、OpenCV、MMDetection3D 等框架的计算机视觉项目实践，重点围绕自动驾驶场景下的视觉感知与目标检测问题开展研究。
+                  在项目与实验过程中，逐步形成以“文档 + 开源社区 + AI工具辅助”为核心的学习与开发方式，能够借助官方文档、GitHub资源及AI辅助工具完成实验环境配置、代码调试、模型训练与结果分析，提高复杂工程问题的解决效率，并积累计算机视觉系统性实验与研究经验。
+                </p>
+                <div class="timeline-tags">
+                  <span class="tag tag-violet">PyTorch</span>
+                  <span class="tag tag-cyan">OpenCV</span>
+                  <span class="tag tag-pink">目标检测</span>
+                  <span class="tag tag-violet">Python</span>
+                  <span class="tag tag-cyan">MMDetection3D</span>
+                  <span class="tag tag-pink">Docker</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-item right scroll-reveal">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <span class="timeline-period">2020.09 — 2024.06</span>
+                <h4>本科 · 数字媒体技术 / 计算机科学与技术学院</h4>
+                <p class="timeline-school">上海应用技术大学</p>
+                <p>核心课程：人机交互设计、计算机图形学、数据结构、虚拟现实技术、数字图像处理。<br>课程项目涵盖UI/UX设计、游戏开发及数字媒体应用，在《游戏开发技术》课程中独立完成2D横版闯关游戏原型开发，实现角色控制、碰撞检测及基础AI行为逻辑，完成从需求分析、功能设计到实现的完整开发流程，为后续人工智能与计算机视觉方向的学习建立软件工程与交互设计基础。</p>
+                <div class="timeline-tags">
+                  <span class="tag tag-violet">Sketch</span>
+                  <span class="tag tag-cyan">Figma</span>
+                  <span class="tag tag-pink">Photoshop</span>
+                  <span class="tag tag-violet">Capcut</span>
+                  <span class="tag tag-cyan">界面设计</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 实习经历 -->
+        <div class="timeline-block scroll-reveal">
+          <h3 class="timeline-heading">💼 实习经历</h3>
+          <div class="timeline">
+            <div class="timeline-item left scroll-reveal">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <span class="timeline-period">2023.06 — 2023.09</span>
+                <h4>UI 设计实习生</h4>
+                <p class="timeline-company">上海海擎科技有限公司</p>
+                <ul class="timeline-list">
+                  <li>独立完成招聘平台 PC 端及移动端约 20 个核心页面设计，包括首页、职位展示、企业信息、个人中心等模块。根据产品需求梳理页面信息结构，优化内容布局与用户操作流程，提升页面信息展示效率</li>
+                  <li>使用 Sketch 完成高保真界面设计、组件整理及设计切图，结合 Photoshop 完成页面视觉优化、宣传素材处理及相关设计资源制作，推动设计方案落地。</li>
+                  <li>与开发团队保持沟通，根据实现需求调整设计方案，协助解决开发过程中的页面还原问题，保证设计效果与产品功能一致。</li>
+                  <li>参与客户宣传视频制作，负责素材整理、视频剪辑及基础后期处理（Premiere Pro、剪映），完成项目宣传素材交付。</li>
+                </ul>
+                <div class="timeline-tags">
+                  <span class="tag tag-violet">Figma</span>
+                  <span class="tag tag-cyan">Design System</span>
+                  <span class="tag tag-pink">A/B Testing</span>
+                  <span class="tag tag-violet">Sketch</span>
+                  <span class="tag tag-cyan">Photoshop</span>
+                  <span class="tag tag-pink">Capcut</span>
+                </div>
+              </div>
+            </div>
+            <div class="timeline-item right scroll-reveal">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <span class="timeline-period">2022.08 — 2022.09</span>
+                <h4>专利分析师</h4>
+                <p class="timeline-company">浦东知识产权服务中心</p>
+                <ul class="timeline-list">
+                  <li>根据项目需求分析技术方案核心特征，拆解关键词及技术方向，制定中文及英文专利检索策略。</li>
+                  <li>通过专利数据库开展相关领域文献检索，对目标专利技术方案进行特征整理、技术路线分析及相关性比对，协助完成查新报告。 </li>
+                  <li>参与整理专利检索关键词分类体系，优化资料整理流程，提高技术检索与分析效率。</li>
+                </ul>
+                <div class="timeline-tags">
+                  <span class="tag tag-violet">Microsoft Office</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 💼 项目 ==================== -->
+    <section class="page page-projects" id="projects">
+      <div class="page-inner">
+        <div class="section-title scroll-reveal">
+          <h2>项目经历</h2>
+          <p>从课程作业到商业项目，每一步都在突破</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <div class="project-card scroll-reveal" style="--delay: 0.3s">
+            <div class="project-cover project-cover-4">
+              <span class="project-emoji">🧠</span>
+            </div>
+            <div class="project-body">
+              <h3>招聘平台产品界面设计项目</h3>
+              <p class="project-period">2024.03 — 2024.08</p>
+              <p>参与求职招聘平台（51nejob.com）PC端及移动端产品设计工作，围绕职位展示、企业信息、用户中心等核心业务场景，完成产品界面设计、交互优化及视觉资源制作，支持招聘平台产品功能展示与用户体验优化。
+              <br>工作职责：UI设计与产品体验优化
+              </p>
+              <div class="project-tags">
+                  <span class="tag tag-violet">Figma</span>
+                  <span class="tag tag-cyan">Design System</span>
+                  <span class="tag tag-pink">A/B Testing</span>
+                  <span class="tag tag-violet">Sketch</span>
+                  <span class="tag tag-cyan">Photoshop</span>
+                  <span class="tag tag-pink">Capcut</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card scroll-reveal">
+            <div class="project-cover project-cover-1">
+              <span class="project-emoji">🎴</span>
+            </div>
+            <div class="project-body">
+              <h3>本科毕业设计｜基于 Android 的物品管理 APP 开发</h3>
+              <p class="project-period">2024.1–2024.6</p>
+              <p>项目概述： 基于 Android 平台开发物品管理应用，实现物品录入、查询、出入库管理及基础统计功能。 
+              <br>工作职责： 
+              1. 使用 APP Inventor 完成应用原型搭建，实现登录、物品列表、管理及个人中心模块。 
+              2. 使用 Figma、Photoshop 完成 UI 界面设计及交互优化，完成移动端产品设计实践。 
+              </p>
+              <div class="project-tags">
+                <span class="tag tag-violet">APP Inventor</span>
+                <span class="tag tag-cyan">Photoshop</span>
+                <span class="tag tag-pink">Figma</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card scroll-reveal" style="--delay: 0.1s">
+            <div class="project-cover project-cover-2">
+              <span class="project-emoji">📊</span>
+            </div>
+            <div class="project-body">
+              <h3>团队项目｜扑克牌花色识别系统</h3>
+              <p class="project-period">2025.3-2025.4</p>
+              <p>项目概述： 针对嵌入式设备算力限制问题，基于 Edge Impulse 与 OpenMV 搭建轻量化视觉分类系统，实现扑克牌四类花色实时识别。
+                <br>工作职责： 
+                1. 数据集处理： 完成扑克牌数据整理，将原始类别调整为 Clubs、Diamonds、Hearts、Spades 四分类任务。 
+                2. 模型部署： 基于 Edge Impulse 完成轻量化模型训练，并部署 TensorFlow Lite 模型至 OpenMV，实现端侧推理。 
+                3. 系统调试： 修改 Python 推理程序，实现结果输出和日志记录，并排查文件系统及串口通信问题。
+              </p>
+              <div class="project-tags">
+                <span class="tag tag-violet">Edge Impulse</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card scroll-reveal" style="--delay: 0.2s">
+            <div class="project-cover project-cover-3">
+              <span class="project-emoji">🖌️</span>
+            </div>
+            <div class="project-body">
+              <h3>硕士毕业设计｜低可见度环境下自动驾驶三维目标检测优化</h3>
+              <p class="project-period">2025.1-2025.9</p>
+              <p>针对自动驾驶场景中夜间、雨天等低可见度环境导致三维目标检测性能下降的问题，基于 MMDetection3D 与 CRN 框架开展视觉感知优化实验。利用 nuScenes 自动驾驶数据集分析环境变化对检测模型性能的影响，并探索数据增强策略提升模型鲁棒性。</p>
+              <div class="project-tags">
+                <span class="tag tag-violet">PyTorch</span>
+                <span class="tag tag-cyan">OpenCV</span>
+                <span class="tag tag-pink">目标检测</span>
+                <span class="tag tag-violet">Python</span>
+                <span class="tag tag-cyan">MMDetection3D</span>
+                <span class="tag tag-pink">Docker</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card scroll-reveal" style="--delay: 0.4s">
+            <div class="project-cover project-cover-5">
+              <span class="project-emoji">🎨</span>
+            </div>
+            <div class="project-body">
+              <h3>个人项目 | 嵌入式计算机视觉目标检测与人脸识别系统</h3>
+              <p class="project-period">2023 — 2024</p>
+              <p>为校园活动、社团、个人项目设计的海报、LOGO、宣传册等平面物料，注重排版与视觉传达效率。</p>
+              <div class="project-tags">
+                <span class="tag tag-violet">Python</span>
+                <span class="tag tag-cyan">Linux</span>
+                <span class="tag tag-pink">目标检测</span>
+                <span class="tag tag-violet">Raspberry Pi</span>
+                <span class="tag tag-cyan">OpenCV</span>
+                <span class="tag tag-pink">TensorFlow</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card scroll-reveal" style="--delay: 0.5s">
+            <div class="project-cover project-cover-6">
+              <span class="project-emoji">⚡</span>
+            </div>
+            <div class="project-body">
+              <h3>个人作品集网站（本项目）</h3>
+              <p class="project-period">2025</p>
+              <p>独立设计并开发的全链路个人作品集网站，包含 Design Token 系统、暗色模式、Canvas 动效、滚动动画、作品画廊等完整功能。</p>
+              <div class="project-tags">
+                <span class="tag tag-violet">HTML/CSS</span>
+                <span class="tag tag-cyan">JavaScript</span>
+                <span class="tag tag-pink">Canvas</span>
+                <span class="tag tag-violet">Design System</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link">🔗 GitHub</a>
+                <a href="#" class="project-link">🌐 在线预览</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 📬 联系 ==================== -->
+    <section class="page page-contact" id="contact">
+      <div class="page-inner">
+        <div class="section-title scroll-reveal">
+          <h2>联系我</h2>
+          <p>有合作意向或想聊聊设计 & 技术？随时找我 ✉️</p>
+        </div>
+
+        <div class="contact-grid">
+          <a href="1243723898@qq.com" class="contact-card scroll-reveal">
+            <div class="contact-icon">📧</div>
+            <h3>邮箱</h3>
+            <p>1243723898@qq.com</p>
+            <span class="contact-hint">点击发送邮件</span>
+          </a>
+          <a href="tel:+8613651898650" class="contact-card scroll-reveal" style="--delay: 0.1s">
+            <div class="contact-icon">📱</div>
+            <h3>电话</h3>
+            <p>+86 13651898650</p>
+            <span class="contact-hint">点击拨打电话</span>
+          </a>
+          <div class="contact-card scroll-reveal" style="--delay: 0.2s">
+            <div class="contact-icon">📍</div>
+            <h3>地址</h3>
+            <p>上海市 · 杨浦区</p>
+            <span class="contact-hint">欢迎线下交流</span>
+          </div>
+          <a href="https://github.com/2550190670-blip" target="_blank" rel="noopener" class="contact-card scroll-reveal" style="--delay: 0.3s">
+            <div class="contact-icon">🐙</div>
+            <h3>GitHub</h3>
+            <p>github.com/2550190670-blip</p>
+            <span class="contact-hint">查看我的代码</span>
+          </a>
+        </div>
+
+        <!-- 简历下载 -->
+        <div class="resume-section scroll-reveal">
+          <div class="resume-card">
+            <div class="resume-icon">📄</div>
+            <div class="resume-info">
+              <h3>下载完整简历</h3>
+              <p>包含详细的项目经历、技能清单与获奖记录</p>
+            </div>
+            <a href="倪润玮.pdf" class="btn btn-primary" download>
+              <span>下载 PDF</span>
+              <span class="btn-arrow">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 社交链接 -->
+        <div class="social-links scroll-reveal">
+          <a href="#" class="social-link" aria-label="微信">💬</a>
+          <a href="#" class="social-link" aria-label="QQ">🐧</a>
+          <a href="#" class="social-link" aria-label="B站">📺</a>
+          <a href="#" class="social-link" aria-label="小红书">📕</a>
+          <a href="#" class="social-link" aria-label="ArtStation">🎨</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© 2025 倪润玮 · Designed & Built with ❤️ + Code</p>
+      <p class="footer-tag">UI Designer × Frontend Developer × AI Artist</p>
+    </div>
+  </footer>
+
+  <!-- ========== 灯箱 Modal ========== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-image-area" id="modalImage"></div>
+      <div class="modal-info">
+        <h3 id="modalTitle"></h3>
+        <span class="tag" id="modalTag"></span>
+        <p id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== JavaScript ========== -->
+  <script src="app.js"></script>
+</body>
+</html>
