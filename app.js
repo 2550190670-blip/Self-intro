@@ -119,13 +119,32 @@
      4️⃣  页面导航切换（单页应用逻辑）
      ====================================================================== */
   const navLinks = document.querySelectorAll('.nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  const allNavLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileNav = document.getElementById('mobileNav');
   const pages = document.querySelectorAll('.page');
+
+  function closeMobileMenu() {
+    if (!mobileMenuToggle || !mobileNav) return;
+    mobileMenuToggle.classList.remove('active');
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    mobileNav.classList.remove('active');
+  }
+
+  function toggleMobileMenu() {
+    if (!mobileMenuToggle || !mobileNav) return;
+    const isOpen = mobileNav.classList.toggle('active');
+    mobileMenuToggle.classList.toggle('active', isOpen);
+    mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
 
   function switchPage(pageId) {
     // 更新导航高亮
-    navLinks.forEach(link => {
+    allNavLinks.forEach(link => {
       link.classList.toggle('active', link.dataset.page === pageId);
     });
+    closeMobileMenu();
 
     // 切换页面 + 重新触发入场动画
     pages.forEach(page => {
@@ -159,13 +178,28 @@
   }
 
   // 导航点击
-  navLinks.forEach(link => {
+  allNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const pageId = link.dataset.page;
       history.pushState(null, '', '#' + pageId);
       switchPage(pageId);
     });
+  });
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!mobileNav || !mobileMenuToggle) return;
+    if (!mobileNav.classList.contains('active')) return;
+    if (mobileNav.contains(e.target) || mobileMenuToggle.contains(e.target)) return;
+    closeMobileMenu();
+  });
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) closeMobileMenu();
   });
 
   // Logo 点击 → 回首页
