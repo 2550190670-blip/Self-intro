@@ -274,6 +274,13 @@
       src: 'image/poster.png',
       emoji: '🎵'
     },
+    {
+      id: 9, type: 'ui', title: 'Persona 3 Reload 主题交互网站',
+      desc: '从 Figma 视觉设计、信息架构与交互规划到响应式前端实现的完整 UI 项目。点击卡片访问线上作品。',
+      src: '',
+      emoji: '🌊',
+      url: 'https://2550190670-blip.github.io/hitorip3r/'
+    },
   ];
 
   const galleryGrid = document.getElementById('galleryGrid');
@@ -322,7 +329,12 @@
       (function(card) {
         card.addEventListener('click', function() {
           var id = parseInt(card.dataset.id, 10);
-          openModal(id);
+          var selected = artworks.find(function(item) { return item.id === id; });
+          if (selected && selected.url) {
+            window.open(selected.url, '_blank', 'noopener,noreferrer');
+          } else {
+            openModal(id);
+          }
         });
       })(cards[j]);
     }
@@ -355,8 +367,8 @@
   const modalTag = document.getElementById('modalTag');
   const modalDesc = document.getElementById('modalDesc');
 
-  const typeLabel = { badge: '吧唧柄图', sketch: '手绘临摹', graphic: '平面设计' };
-  const tagClass  = { badge: 'tag-pink', sketch: 'tag-violet', graphic: 'tag-cyan' };
+  const typeLabel = { badge: '吧唧柄图', sketch: '手绘临摹', graphic: '平面设计', ui: 'UI 设计' };
+  const tagClass  = { badge: 'tag-pink', sketch: 'tag-violet', graphic: 'tag-cyan', ui: 'tag-violet' };
 
   function openModal(id) {
     var art = null;
