@@ -140,6 +140,15 @@
   }
 
   function switchPage(pageId) {
+    const pageExists = Array.prototype.some.call(pages, function(page) {
+      return page.id === pageId;
+    });
+
+    if (!pageExists) {
+      pageId = 'home';
+      history.replaceState(null, '', '#home');
+    }
+
     // 更新导航高亮
     allNavLinks.forEach(link => {
       link.classList.toggle('active', link.dataset.page === pageId);
@@ -408,7 +417,173 @@
 
 
   /* ======================================================================
-     7️⃣  技能条动画触发（进入视口时）
+     7️⃣  项目详情 Modal
+     ====================================================================== */
+  const projectDetails = {
+    p3r: {
+      title: 'Persona 3 Reload 主题交互网站',
+      period: '2026',
+      summary: '以 Persona 3 Reload 的视觉语言为灵感，构建包含角色、图鉴、探索、日历、音乐和登录模块的响应式主题网站。',
+      role: '负责视觉方向、信息架构、交互规划、响应式前端实现，以及 AI 生成代码的拆解、检查与浏览器验收。',
+      stack: ['Figma', 'HTML/CSS', 'JavaScript', 'Responsive'],
+      links: [{ label: '🌐 在线预览', url: 'https://2550190670-blip.github.io/hitorip3r/' }]
+    },
+    rogue: {
+      title: 'Rogue.py｜用 Python 自动战斗学编程',
+      period: '2026',
+      summary: '将真实 Python 运行时放入浏览器，让玩家通过编写代码完成战斗、策略选择与随机迷宫寻路，共设计 5 章 14 关。',
+      role: '负责产品规则、关卡与 UI、BFS 迷宫、Pyodide 与 Web Worker 集成，并用 AI Coding 辅助实现后逐关测试和验收。',
+      stack: ['Python', 'Pyodide', 'Web Worker', 'React', 'BFS', 'Vibe Coding'],
+      links: [{ label: '🌐 在线预览', url: 'https://2550190670-blip.github.io/rogue-py/' }]
+    },
+    meeting: {
+      title: 'AI 会议纪要整理系统',
+      period: '2026',
+      summary: '面向活动执行场景，将会议记录生成摘要、议题、决策、待办、风险和后续跟进，并支持编辑、收藏与文件夹管理。',
+      role: '负责业务场景、输出 Schema、Prompt、FastAPI 数据链路与异常测试；让 AI 辅助编码，再通过运行时校验和不同会议样本验收。',
+      stack: ['Python', 'FastAPI', 'Qwen', 'SQLite', 'Jinja2', 'SSE', 'AI Coding'],
+      links: [{ label: '📱 下载 APK', url: 'https://github.com/2550190670-blip/meeting_ai_assistant/releases/download/v1.0.0/app-debug.apk' }]
+    },
+    'cv-creater': {
+      title: 'CV Creater 智能定向简历管理系统',
+      period: '2026',
+      summary: '将个人信息、教育、工作和项目经历沉淀为可复用知识库，结合岗位 JD 生成可编辑、可确认采用的定向简历，并保存来源快照与生成版本。系统还支持招聘截图 OCR、简历档案管理以及 Word、PDF 导出。',
+      role: '独立负责需求梳理、信息架构与视觉交互、前后端和数据库开发、Qwen 严格事实提示词、OCR 接入、账号与数据隔离，以及跨格式导出排版调试。',
+      stack: ['React', 'TypeScript', 'Vite', 'FastAPI', 'Pydantic', 'SQLite', 'Qwen', 'OCR', 'python-docx', 'ReportLab'],
+      links: []
+    },
+    recruiting: {
+      title: '招聘平台产品界面设计项目',
+      period: '2024.03 — 2024.08',
+      summary: '围绕职位展示、企业信息和用户中心等核心场景，参与招聘平台 PC 端与移动端产品界面设计。',
+      role: '负责页面结构、UI 设计、交互优化、视觉资源制作及设计交付沟通。',
+      stack: ['Figma', 'UI Components', 'Sketch', 'Photoshop', 'CapCut'],
+      links: []
+    },
+    inventory: {
+      title: 'Android 物品管理 APP',
+      period: '2024.1 — 2024.6',
+      summary: '基于 Android 平台实现物品录入、查询、出入库管理和基础统计，覆盖登录、列表、管理及个人中心。',
+      role: '使用 APP Inventor 搭建应用原型，并用 Figma、Photoshop 完成移动端界面与交互优化。',
+      stack: ['APP Inventor', 'Figma', 'Photoshop'],
+      links: []
+    },
+    'card-suits': {
+      title: '扑克牌花色识别系统',
+      period: '2025.3 — 2025.4',
+      summary: '针对嵌入式设备算力限制，训练四类扑克牌花色分类模型，并部署到 OpenMV 完成端侧实时推理。',
+      role: '负责数据整理与四分类重构、Edge Impulse 训练部署、Python 推理输出、日志记录及串口问题排查。',
+      stack: ['Edge Impulse', 'OpenMV', 'TensorFlow Lite', 'Python'],
+      links: []
+    },
+    'low-visibility': {
+      title: '低可见度环境下自动驾驶三维目标检测优化',
+      period: '2025.1 — 2025.9',
+      summary: '基于 MMDetection3D、CRN 与 nuScenes，评估夜间和雨天等环境对三维目标检测的影响，并探索数据增强策略。',
+      role: '负责 Windows Docker/CUDA 环境、CRN 兼容适配、数据处理、模型训练、指标评估与实验结果分析。',
+      stack: ['PyTorch', 'MMDetection3D', 'CRN', 'nuScenes', 'Docker', 'CUDA'],
+      links: []
+    },
+    'embedded-cv': {
+      title: '嵌入式计算机视觉目标检测与人脸识别系统',
+      period: '2023 — 2024',
+      summary: '在 Raspberry Pi 4 上适配目标检测与人脸识别流程，完成不同光照条件下的视频采集、标注和结果分析。',
+      role: '负责 Linux 环境与摄像头配置、开源脚本适配、逐帧推理、CSV 与置信度曲线输出，以及异常结果复核。',
+      stack: ['Python', 'Linux', 'Raspberry Pi', 'OpenCV', 'TensorFlow Lite', 'SSD MobileNet'],
+      links: []
+    },
+    portfolio: {
+      title: '个人作品集网站',
+      period: '2026',
+      summary: '围绕个人能力展示构建多页面单页作品集，包含主题切换、Canvas 动效、滚动动画、作品筛选与响应式布局。',
+      role: '负责产品定位、信息架构和视觉方向，通过提示词驱动 AI 生成与迭代代码，并进行内容整合、交互检查和浏览器验收。',
+      stack: ['HTML/CSS', 'JavaScript', 'Canvas', 'Design System', 'Responsive'],
+      links: [
+        { label: '🔗 GitHub', url: 'https://github.com/2550190670-blip/Self-intro' },
+        { label: '🌐 在线预览', url: 'https://2550190670-blip.github.io/Self-intro/' }
+      ]
+    }
+  };
+
+  const projectModalOverlay = document.getElementById('projectModalOverlay');
+  const projectModalClose = document.getElementById('projectModalClose');
+  const projectModalPeriod = document.getElementById('projectModalPeriod');
+  const projectModalTitle = document.getElementById('projectModalTitle');
+  const projectModalSummary = document.getElementById('projectModalSummary');
+  const projectModalRole = document.getElementById('projectModalRole');
+  const projectModalStack = document.getElementById('projectModalStack');
+  const projectModalLinks = document.getElementById('projectModalLinks');
+  let projectModalTrigger = null;
+
+  function openProjectModal(projectId, trigger) {
+    const project = projectDetails[projectId];
+    if (!project || !projectModalOverlay) return;
+
+    projectModalTrigger = trigger || null;
+    projectModalPeriod.textContent = project.period;
+    projectModalTitle.textContent = project.title;
+    projectModalSummary.textContent = project.summary;
+    projectModalRole.textContent = project.role;
+    projectModalStack.innerHTML = '';
+    projectModalLinks.innerHTML = '';
+
+    project.stack.forEach(function(item, index) {
+      const stackTag = document.createElement('span');
+      const tagColors = ['tag-violet', 'tag-cyan', 'tag-pink'];
+      stackTag.className = 'tag ' + tagColors[index % tagColors.length];
+      stackTag.textContent = item;
+      projectModalStack.appendChild(stackTag);
+    });
+
+    project.links.forEach(function(item) {
+      const link = document.createElement('a');
+      link.className = 'project-modal-link';
+      link.href = item.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = item.label;
+      projectModalLinks.appendChild(link);
+    });
+
+    projectModalOverlay.classList.add('active');
+    projectModalOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    projectModalClose.focus();
+  }
+
+  function closeProjectModal() {
+    if (!projectModalOverlay || !projectModalOverlay.classList.contains('active')) return;
+    projectModalOverlay.classList.remove('active');
+    projectModalOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (projectModalTrigger) projectModalTrigger.focus();
+    projectModalTrigger = null;
+  }
+
+  document.querySelectorAll('.project-card[data-project-id]').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      if (e.target instanceof Element && e.target.closest('a, button')) return;
+      openProjectModal(card.dataset.projectId, card);
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      if (e.target instanceof Element && e.target.closest('a, button')) return;
+      e.preventDefault();
+      openProjectModal(card.dataset.projectId, card);
+    });
+  });
+
+  projectModalClose.addEventListener('click', closeProjectModal);
+  projectModalOverlay.addEventListener('click', function(e) {
+    if (e.target === projectModalOverlay) closeProjectModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeProjectModal();
+  });
+
+
+  /* ======================================================================
+     8️⃣  技能条动画触发（进入视口时）
      ====================================================================== */
   const skillFills = document.querySelectorAll('.skill-fill');
   const skillObserver = new IntersectionObserver(function(entries) {
