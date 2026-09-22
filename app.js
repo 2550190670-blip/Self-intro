@@ -284,7 +284,19 @@
       emoji: '🎵'
     },
     {
-      id: 9, type: 'ui', title: 'Persona 3 Reload 主题交互网站',
+      id: 9, type: 'sketch', title: '手绘临摹作品 · 01',
+      desc: '手绘临摹作品，展示人物绘制与色彩表现。',
+      src: 'image/handdraw-20260912.png',
+      emoji: '✏️'
+    },
+    {
+      id: 10, type: 'sketch', title: '手绘临摹作品 · 02',
+      desc: '手绘临摹作品，展示人物绘制与画面细节。',
+      src: 'image/handdraw-20260827.png',
+      emoji: '🖌️'
+    },
+    {
+      id: 11, type: 'ui', title: 'Persona 3 Reload 主题交互网站',
       desc: '从 Figma 视觉设计、信息架构与交互规划到响应式前端实现的完整 UI 项目。点击卡片访问线上作品。',
       src: '',
       emoji: '🌊',
